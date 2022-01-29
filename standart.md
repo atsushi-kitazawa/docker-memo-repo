@@ -2,6 +2,8 @@
 ```
 docker ps -a
 docker start <container-name>
+docker stop <container-name>
+docker exec -it <container-name> bash
 ```
 
 ## postgre command
