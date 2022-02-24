@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: redis:6.2.6
+    container_name: my_redis
+    restart: always
+    volumes:
+    - $HOME/workspace/docker/redis/data:/data
+    ports:
+    - 6379:6379
