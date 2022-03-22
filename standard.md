@@ -1,9 +1,20 @@
 ## standart command
 ```
+docker images
 docker ps -a
 docker start <container-name>
 docker stop <container-name>
 docker exec -it <container-name> bash
+```
+
+## run from image
+```
+docker run --name <name> --rm -it -d -p 8080:8080 <image-name>:<tag>
+```
+
+## Dockerfile build
+```
+docker build -t <name>:<tag> .
 ```
 
 ## postgre command
