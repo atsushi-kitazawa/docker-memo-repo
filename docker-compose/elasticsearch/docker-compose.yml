@@ -15,9 +15,28 @@ services:
         soft: -1
         hard: -1
 
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.3.2
+    volumes:
+      - ./logstash/pipeline/:/usr/share/logstash/pipeline/
+      - ./logstash/config/:/usr/share/logstash/config/
+    depends_on:
+      - elasticsearch
+
   kibana:
     image: docker.elastic.co/kibana/kibana:8.0.0
     environment:
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
     ports:
        - 5601:5601
+  
+  db:
+    image: postgres:14.2-alpine
+    container_name: es_postgres_14
+    environment:
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+    - ./pgdata:/var/lib/postgresql/data
+    ports:
+    - 15432:5432
